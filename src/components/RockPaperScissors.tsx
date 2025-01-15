@@ -9,9 +9,9 @@ import {
 } from "thirdweb/react";
 import { client } from "../client";
 import { inAppWallet } from "thirdweb/wallets";
-//import { shortenAddress } from "thirdweb/utils";
+import { shortenAddress } from "thirdweb/utils";
 //import { getContract } from "thirdweb";
-import { baseSepolia } from "thirdweb/chains";
+//import { baseSepolia } from "thirdweb/chains";
 //import { claimTo, getBalance } from "thirdweb/extensions/erc20";
 
 type Choice = "Rock" | "Paper" | "Scissors";
@@ -92,7 +92,7 @@ export default function RockPaperScissors() {
         alignItems: "center",
         height: "100vh",
         width: "100vw",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#007bff",
         color: "#333",
       }}
     >
@@ -121,15 +121,11 @@ export default function RockPaperScissors() {
             textAlign: "center",
           }}
         >
-          Mini Game
+          PLAY Stone Paper Scissors Game and EARN
         </h1>
         {!account ? (
           <ConnectButton
             client={client}
-            accountAbstraction={{
-              chain: baseSepolia,
-              sponsorGas: true,
-            }}
             wallets={[
               inAppWallet({
                 auth: {
@@ -153,6 +149,17 @@ export default function RockPaperScissors() {
                 padding: "0.5rem",
               }}
             >
+              <div>
+                <p
+                  style={{
+                    fontSize: "1.3rem",
+                    marginBottom: "-10px",
+                    marginTop: "-10px",
+                  }}
+                >
+                  {shortenAddress(account.address)}
+                </p>
+              </div>
               <button
                 onClick={() => disconnect(wallet!)}
                 style={{
@@ -162,7 +169,7 @@ export default function RockPaperScissors() {
                   border: "none",
                   borderRadius: "4px",
                   cursor: "pointer",
-                  fontSize: "0.75rem",
+                  fontSize: "1rem",
                 }}
               >
                 Logout
